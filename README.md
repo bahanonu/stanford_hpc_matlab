@@ -3,7 +3,12 @@
 MATLAB code related to testing and running analysis on Stanford's HPC systems, in particular Farmeshare or Sherlock.
 
 
-## Blackjack benchmark on Stanford Farmshare clusters
+## Blackjack Parallel Toolbox and MDCS benchmark on Stanford Farmshare clusters
+
+To start, users want to see speedups like the blue, green, and purple curves below (they plateau around the maximum number of CPU cores for that computing environment).
+
+![2017_08_21_famshare2_v_sherlock_workstations_blackjack_speedtest_v2](https://user-images.githubusercontent.com/5241605/53528259-fcf98c00-3a9d-11e9-9ec2-5b63af668fa2.png)
+
 
 To run on Farmshare cluster, enter the below when logged into the cluster and in a directory containing this repository's functions.
 
@@ -79,3 +84,5 @@ parallelWorkerSpeedTest_mdcs(...
 'numWorkersToOpen',16*3);
 exit
 ```
+
+## Blackjack Parallel Toolbox and MDCS benchmark on Stanford Farmshare clusters
