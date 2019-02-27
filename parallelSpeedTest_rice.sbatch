@@ -1,4 +1,6 @@
 #!/bin/bash
+# Biafra Ahanonu
+# Started: 2017.05.22
 #
 #all commands that start with SBATCH contain commands that are just used by SLURM for scheduling
 #################
