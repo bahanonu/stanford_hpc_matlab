@@ -8,11 +8,26 @@ MATLAB code related to testing and running analysis on Stanford's HPC systems, i
 To run on Farmshare cluster, enter the below when logged into the cluster and in a directory containing this repository's functions.
 
 ```bash
+# Start parallel test job
 sbatch parallelSpeedTest_rice.sbatch
+
+# Show job status
+watch sacct -u $USER
 
 ```
 
 Run the below commands while on a Farmshare node while in a directory containing `parallelWorkerSpeedTest_mdcs.m` and `getOptions.m`.
+
+```bash
+# Load MATLAB module
+module load matlab/r2017a
+
+# Load MATLAB
+matlab
+
+```
+
+Then when inside MATLAB
 
 ```Matlab
 configCluster
