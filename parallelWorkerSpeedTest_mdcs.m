@@ -28,7 +28,10 @@ function [success speedup poolSizeVector] = parallelWorkerSpeedTest_mdcs(varargi
 	options.enableFigures = 0;
 	% check maximum number of cores available (e.g. workers to run)
 	options.numWorkersToOpen = java.lang.Runtime.getRuntime().availableProcessors-1;
-	% local_parpool - local parpool, mdcs_parpool - mdcs with parpool, mdcs_batch - mdcs with batch
+	% workstation_parpool - local parpool on workstation
+	% local_parpool - local parpool on cluster
+	% mdcs_parpool - mdcs with parpool on cluster
+	% mdcs_batch - mdcs with batch on cluster
 	options.localVsCluster = 'local_parpool';
 	% 'normal','bigmem'
 	options.clusterPartition = 'bigmem';
@@ -44,7 +47,14 @@ function [success speedup poolSizeVector] = parallelWorkerSpeedTest_mdcs(varargi
 	% ========================
 
 	try
-		configCluster
+		% Add Distributed Computing examples folder to path to get access to pctdemo_setup_blackjack and pctdemo_task_blackjack
+		addpath(fullfile(matlabroot, 'examples', 'distcomp'))
+
+		if strcmp(options.localVsCluster,'workstation_parpool')==1
+			options.localVsCluster = 'local_parpool';
+		else
+			configCluster
+		end
 		% ========================
 		% put variables into workspace.
 		numHandsList = options.numHandsList;

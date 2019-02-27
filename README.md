@@ -3,6 +3,13 @@
 MATLAB code related to testing and running analysis on Stanford's HPC systems, in particular Farmeshare or Sherlock.
 
 
+## Blackjack Parallel Toolbox testing on local workstation
+
+```Matlab
+maxParallelJobsToTest = 2*java.lang.Runtime.getRuntime().availableProcessors;
+[success speedup poolSizeVector] = parallelWorkerSpeedTest_mdcs('enableFigures',1,'numPlayersList',maxParallelJobsToTest,'numHandsList',[7e4],'localVsCluster','workstation_parpool');
+```
+
 ## Blackjack Parallel Toolbox and MDCS benchmark on Stanford Farmshare clusters
 
 To start, users want to see speedups like the blue, green, and purple curves below (they plateau around the maximum number of CPU cores for that computing environment).
@@ -13,8 +20,8 @@ To start, users want to see speedups like the blue, green, and purple curves bel
 To run on Farmshare cluster, enter the below when logged into the cluster and in a directory containing this repository's functions.
 
 ```bash
-# Start parallel test job
-sbatch parallelSpeedTest_rice.sbatch
+# Start parallel test job, force UNIX-style line endings
+sed 's/\r$//' parallelSpeedTest_rice.sbatch | sbatch
 
 # Show job status
 watch sacct -u $USER
@@ -85,4 +92,15 @@ parallelWorkerSpeedTest_mdcs(...
 exit
 ```
 
-## Blackjack Parallel Toolbox and MDCS benchmark on Stanford Farmshare clusters
+## Blackjack Parallel Toolbox benchmark on Stanford Sherlock clusters
+
+```bash
+# Bigmem partition run, force UNIX-style line endings
+sed 's/\r$//' parallelSpeedTest_sherlock2_bigmem.sbatch | sbatch
+
+# Normal partition run, force UNIX-style line endings
+sed 's/\r$//' parallelSpeedTest_sherlock2_normal.sbatch | sbatch
+
+# Show job status
+watch sacct -u $USER
+```

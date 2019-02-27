@@ -20,7 +20,7 @@
 # NOTE- in the hns partition the default max run time is 7 days , so you wont need to include qos
 # We are submitting to the dev partition, there are several on sherlock: normal, gpu, owners, hns, bigmem (jobs requiring >64Gigs RAM)
 # The more partitions you can submit to the less time you will wait, you can submit to multiple partitions with -p at once in comma separated format.
-#SBATCH -p hns,normal
+#SBATCH -p hns,normal,mschnitz
 #################
 #number of nodes you are requesting, the more you ask for the longer you wait
 #SBATCH --nodes=1
@@ -28,8 +28,8 @@
 # --mem is memory per node; default is 4000 MB per CPU, remember to ask for enough mem to match your CPU request, since
 # sherlock automatically allocates 8 Gigs of RAM/CPU, if you ask for 8 CPUs you will need 32 Gigs of RAM, so either
 # leave --mem commented out or request >= to the RAM needed for your CPU request.
-#SBATCH --mem=224000
-#SBATCH --cpus-per-task=56
+#SBATCH --mem=128000
+#SBATCH --cpus-per-task=20
 #################
 # Have SLURM send you an email when the job ends or fails, careful, the email could end up in your clutter folder
 # Also, if you submit hundreds of jobs at once you will get hundreds of emails.
@@ -44,8 +44,8 @@ module load matlab/R2017a
 # otherwise:
 
 matlab -nodesktop <<EOF
-display('Running 1 nodes with 56 CPUs/node requested at 10GB ram, bigmem')
+display('Running 1 nodes with 20 CPUs/node requesting 128GB RAM, normal | hns, or mschnitz partitions')
 display('CELLMax test case parallel');
 java.lang.Runtime.getRuntime().availableProcessors
-parallelWorkerSpeedTest_mdcs([1e5],[100 200],[datestr(now,'yyyy_mm_dd_HHMMSS','local') '_parallelSpeedTest_runtimes.csv'],0,56);
+parallelWorkerSpeedTest_mdcs([1e5],[100 200],[datestr(now,'yyyy_mm_dd_HHMMSS','local') '_parallelSpeedTest_runtimes_sherlockNormal.csv'],0,56);
 EOF

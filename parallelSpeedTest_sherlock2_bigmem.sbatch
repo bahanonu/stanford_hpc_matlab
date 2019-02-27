@@ -44,8 +44,8 @@ module load matlab/R2017a
 # otherwise:
 
 matlab -nodesktop <<EOF
-display('Running 1 nodes with 56 CPUs/node requested at 10GB ram, bigmem')
+display('Running 1 nodes with 56 CPUs/node requesting 224GB RAM | bigmem partition')
 display('CELLMax test case parallel');
 java.lang.Runtime.getRuntime().availableProcessors
-parallelWorkerSpeedTest_mdcs([1e5],[100 200],[datestr(now,'yyyy_mm_dd_HHMMSS','local') '_parallelSpeedTest_runtimes.csv'],0,56);
+parallelWorkerSpeedTest_mdcs([1e5],[100 200],[datestr(now,'yyyy_mm_dd_HHMMSS','local') '_parallelSpeedTest_runtimes_sherlockBigmem.csv'],0,56);
 EOF
