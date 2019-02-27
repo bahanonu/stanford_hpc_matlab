@@ -46,7 +46,6 @@ module load matlab/r2017a
 #srun R CMD BATCH  ./rtest.R
 # otherwise:
 # addpath([matlabroot 'toolbox/local/IntegrationScripts/farmshare2'])
-
 matlab -nodesktop <<EOF
 configCluster
 display('Running 1 nodes with 16 CPUs/node requested at 64GB ram')

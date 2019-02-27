@@ -42,6 +42,7 @@ module load matlab/R2017a
 # You can use srun if your job is parallel
 #srun R CMD BATCH  ./rtest.R
 # otherwise:
+
 matlab -nodesktop <<EOF
 display('Running 1 nodes with 56 CPUs/node requested at 10GB ram, bigmem')
 display('CELLMax test case parallel');
