@@ -1,9 +1,16 @@
 # Stanford MATALB High Performance Computing
 
-MATLAB code related to testing and running analysis on Stanford's HPC systems, in particular Farmeshare or Sherlock.
+MATLAB and SLURM code related to testing and running analysis on Stanford's HPC systems, in particular Farmeshare or Sherlock.
 
+Contact: Biafra Ahanonu (bahanonu [at] alum.mit.edu).
+
+To start, users want to see speedups like the blue, green, and purple curves below (they plateau around the maximum number of CPU cores for that computing environment).
+
+![2017_08_21_famshare2_v_sherlock_workstations_blackjack_speedtest_v2](https://user-images.githubusercontent.com/5241605/53528259-fcf98c00-3a9d-11e9-9ec2-5b63af668fa2.png)
 
 ## Blackjack Parallel Toolbox testing on local workstation
+
+Run the below command to test on a local workstation.
 
 ```Matlab
 maxParallelJobsToTest = 2*java.lang.Runtime.getRuntime().availableProcessors;
@@ -11,11 +18,6 @@ maxParallelJobsToTest = 2*java.lang.Runtime.getRuntime().availableProcessors;
 ```
 
 ## Blackjack Parallel Toolbox and MDCS benchmark on Stanford Farmshare clusters
-
-To start, users want to see speedups like the blue, green, and purple curves below (they plateau around the maximum number of CPU cores for that computing environment).
-
-![2017_08_21_famshare2_v_sherlock_workstations_blackjack_speedtest_v2](https://user-images.githubusercontent.com/5241605/53528259-fcf98c00-3a9d-11e9-9ec2-5b63af668fa2.png)
-
 
 To run on Farmshare cluster, enter the below when logged into the cluster and in a directory containing this repository's functions.
 
@@ -39,7 +41,9 @@ matlab
 
 ```
 
-Then when inside MATLAB
+Then when inside MATLAB enter one of the below set of lines depending on the test desired:
+
+### MDCS Parpool (multi-node) on Farmshare
 
 ```Matlab
 configCluster
@@ -58,6 +62,8 @@ parallelWorkerSpeedTest_mdcs(...
 exit
 ```
 
+### MDCS Batch (multi-node) on Farmshare
+
 ```Matlab
 configCluster
 display('Running 1 nodes with 1 CPUs/node requested at 64GB ram')
@@ -74,6 +80,8 @@ parallelWorkerSpeedTest_mdcs(...
 'numWorkersToOpen',16*3);
 exit
 ```
+
+### Local parpool (single node) on Farmshare
 
 ```Matlab
 configCluster
@@ -93,6 +101,8 @@ exit
 ```
 
 ## Blackjack Parallel Toolbox benchmark on Stanford Sherlock clusters
+
+To run MATLAB parallel speed test on Sherlock cluster, enter the below when logged into the cluster and in a directory containing this repository's functions.
 
 ```bash
 # Bigmem partition run, force UNIX-style line endings
