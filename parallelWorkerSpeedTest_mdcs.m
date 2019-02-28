@@ -129,6 +129,10 @@ function [success speedup poolSizeVector] = parallelWorkerSpeedTest_mdcs(varargi
 			end
 		end
 	catch err
+		% display error log
+		display(repmat('@',1,7))
+		disp(getReport(err,'extended','hyperlinks','on'));
+		display(repmat('@',1,7))
 		success = 0;
 		try
 			% =====================
@@ -139,10 +143,6 @@ function [success speedup poolSizeVector] = parallelWorkerSpeedTest_mdcs(varargi
 			disp(getReport(err,'extended','hyperlinks','on'));
 			display(repmat('@',1,7))
 		end
-		% display error log
-		display(repmat('@',1,7))
-		disp(getReport(err,'extended','hyperlinks','on'));
-		display(repmat('@',1,7))
 	end
 	function [c] = subfxn_setupParallelEnvironment()
 		if strcmp('local_parpool',localVsCluster)
